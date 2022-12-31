@@ -2,6 +2,6 @@
 
 qrcodeJs is a qr code generator from text or jwt.
 
-</br>
+[Link DEMO](https://marcellopagano.github.io/qrcodejs/)
 
 ![readme](./readme.jpg)
