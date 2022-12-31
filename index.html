@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qrcode generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>qrcodeJs</h1>
+    <h6>qrcode generator</h6>
+    <div class="container">
+        <canvas id="canvas"></canvas>
+        <form action="">
+            <select name="qr-type" id="qr-type">
+                <option value="text" selected>text</option>
+                <option value="jwt">jwt</option>
+            </select>
+            <textarea name="qr-text" id="qr-text" rows="5" maxlength="1000"></textarea>
+            <div id="qr-message"></div>
+            <div class="buttons">
+                <input type="button" value="generate" id="generate">
+                <input type="reset" value="reset" id="reset">
+            </div>
+        </form>
+        
+    </div>
+
+    <script src="bundle.js"></script>
+
+</body>
+
+</html>

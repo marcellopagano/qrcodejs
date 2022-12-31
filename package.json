@@ -1,0 +1,20 @@
+{
+  "name": "qrcodejs",
+  "version": "1.0.0",
+  "description": "qrcode generator",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "build": "browserify ./src/main.js -o bundle.js"
+  },
+  "author": "Marcello Pagano",
+  "license": "MIT",
+  "dependencies": {
+    "jwt-decode": "^3.1.2",
+    "qrcode": "^1.5.1"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "eslint": "^8.30.0"
+  }
+}
