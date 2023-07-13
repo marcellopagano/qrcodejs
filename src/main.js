@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const QRCode = require('qrcode')
 const jwtDecode = require('jwt-decode')
 const canvas = document.getElementById('canvas')
@@ -6,7 +7,7 @@ const qrText = document.getElementById('qr-text')
 const generateBtn = document.getElementById('generate')
 const qrType = document.getElementById('qr-type')
 const qrMessage = document.getElementById('qr-message')
-
+const qrSave = document.getElementById('qr-save')
 
 const qrCheck = (text, qrType) => {
   qrMessage.textContent = ''
@@ -32,6 +33,11 @@ const qrCheck = (text, qrType) => {
 }
 generateBtn.addEventListener('click', () => {
   qrCheck(qrText.value, qrType.value)
+})
+
+qrSave.addEventListener('click', () => {
+  qrSave.setAttribute('download', 'qr.png');
+  qrSave.setAttribute('href', canvas.toDataURL("image/png"));
 })
 
 qrText.value = 'max 1000 characters'
