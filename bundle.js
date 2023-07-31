@@ -223,10 +223,6 @@ module.exports = function encodeUtf8 (input) {
 }
 
 },{}],3:[function(require,module,exports){
-"use strict";function e(e){this.message=e}e.prototype=new Error,e.prototype.name="InvalidCharacterError";var r="undefined"!=typeof window&&window.atob&&window.atob.bind(window)||function(r){var t=String(r).replace(/=+$/,"");if(t.length%4==1)throw new e("'atob' failed: The string to be decoded is not correctly encoded.");for(var n,o,a=0,i=0,c="";o=t.charAt(i++);~o&&(n=a%4?64*n+o:o,a++%4)?c+=String.fromCharCode(255&n>>(-2*a&6)):0)o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);return c};function t(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(e){return decodeURIComponent(r(e).replace(/(.)/g,(function(e,r){var t=r.charCodeAt(0).toString(16).toUpperCase();return t.length<2&&(t="0"+t),"%"+t})))}(t)}catch(e){return r(t)}}function n(e){this.message=e}function o(e,r){if("string"!=typeof e)throw new n("Invalid token specified");var o=!0===(r=r||{}).header?0:1;try{return JSON.parse(t(e.split(".")[o]))}catch(e){throw new n("Invalid token specified: "+e.message)}}n.prototype=new Error,n.prototype.name="InvalidTokenError";const a=o;a.default=o,a.InvalidTokenError=n,module.exports=a;
-
-
-},{}],4:[function(require,module,exports){
 
 const canPromise = require('./can-promise')
 
@@ -304,7 +300,7 @@ exports.toString = renderCanvas.bind(null, function (data, _, opts) {
   return SvgRenderer.render(data, opts)
 })
 
-},{"./can-promise":5,"./core/qrcode":21,"./renderer/canvas":28,"./renderer/svg-tag.js":29}],5:[function(require,module,exports){
+},{"./can-promise":4,"./core/qrcode":20,"./renderer/canvas":27,"./renderer/svg-tag.js":28}],4:[function(require,module,exports){
 // can-promise has a crash in some versions of react native that dont have
 // standard global objects
 // https://github.com/soldair/node-qrcode/issues/157
@@ -313,7 +309,7 @@ module.exports = function () {
   return typeof Promise === 'function' && Promise.prototype && Promise.prototype.then
 }
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /**
  * Alignment pattern are fixed reference pattern in defined positions
  * in a matrix symbology, which enables the decode software to re-synchronise
@@ -398,7 +394,7 @@ exports.getPositions = function getPositions (version) {
   return coords
 }
 
-},{"./utils":25}],7:[function(require,module,exports){
+},{"./utils":24}],6:[function(require,module,exports){
 const Mode = require('./mode')
 
 /**
@@ -459,7 +455,7 @@ AlphanumericData.prototype.write = function write (bitBuffer) {
 
 module.exports = AlphanumericData
 
-},{"./mode":18}],8:[function(require,module,exports){
+},{"./mode":17}],7:[function(require,module,exports){
 function BitBuffer () {
   this.buffer = []
   this.length = 0
@@ -498,7 +494,7 @@ BitBuffer.prototype = {
 
 module.exports = BitBuffer
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
  * Helper class to handle QR Code symbol modules
  *
@@ -565,7 +561,7 @@ BitMatrix.prototype.isReserved = function (row, col) {
 
 module.exports = BitMatrix
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 const encodeUtf8 = require('encode-utf8')
 const Mode = require('./mode')
 
@@ -597,7 +593,7 @@ ByteData.prototype.write = function (bitBuffer) {
 
 module.exports = ByteData
 
-},{"./mode":18,"encode-utf8":2}],11:[function(require,module,exports){
+},{"./mode":17,"encode-utf8":2}],10:[function(require,module,exports){
 const ECLevel = require('./error-correction-level')
 
 const EC_BLOCKS_TABLE = [
@@ -734,7 +730,7 @@ exports.getTotalCodewordsCount = function getTotalCodewordsCount (version, error
   }
 }
 
-},{"./error-correction-level":12}],12:[function(require,module,exports){
+},{"./error-correction-level":11}],11:[function(require,module,exports){
 exports.L = { bit: 1 }
 exports.M = { bit: 0 }
 exports.Q = { bit: 3 }
@@ -786,7 +782,7 @@ exports.from = function from (value, defaultValue) {
   }
 }
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 const getSymbolSize = require('./utils').getSymbolSize
 const FINDER_PATTERN_SIZE = 7
 
@@ -810,7 +806,7 @@ exports.getPositions = function getPositions (version) {
   ]
 }
 
-},{"./utils":25}],14:[function(require,module,exports){
+},{"./utils":24}],13:[function(require,module,exports){
 const Utils = require('./utils')
 
 const G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0)
@@ -841,7 +837,7 @@ exports.getEncodedBits = function getEncodedBits (errorCorrectionLevel, mask) {
   return ((data << 10) | d) ^ G15_MASK
 }
 
-},{"./utils":25}],15:[function(require,module,exports){
+},{"./utils":24}],14:[function(require,module,exports){
 const EXP_TABLE = new Uint8Array(512)
 const LOG_TABLE = new Uint8Array(256)
 /**
@@ -912,7 +908,7 @@ exports.mul = function mul (x, y) {
   return EXP_TABLE[LOG_TABLE[x] + LOG_TABLE[y]]
 }
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 const Mode = require('./mode')
 const Utils = require('./utils')
 
@@ -968,7 +964,7 @@ KanjiData.prototype.write = function (bitBuffer) {
 
 module.exports = KanjiData
 
-},{"./mode":18,"./utils":25}],17:[function(require,module,exports){
+},{"./mode":17,"./utils":24}],16:[function(require,module,exports){
 /**
  * Data mask pattern reference
  * @type {Object}
@@ -1204,7 +1200,7 @@ exports.getBestMask = function getBestMask (data, setupFormatFunc) {
   return bestPattern
 }
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 const VersionCheck = require('./version-check')
 const Regex = require('./regex')
 
@@ -1373,7 +1369,7 @@ exports.from = function from (value, defaultValue) {
   }
 }
 
-},{"./regex":23,"./version-check":26}],19:[function(require,module,exports){
+},{"./regex":22,"./version-check":25}],18:[function(require,module,exports){
 const Mode = require('./mode')
 
 function NumericData (data) {
@@ -1418,7 +1414,7 @@ NumericData.prototype.write = function write (bitBuffer) {
 
 module.exports = NumericData
 
-},{"./mode":18}],20:[function(require,module,exports){
+},{"./mode":17}],19:[function(require,module,exports){
 const GF = require('./galois-field')
 
 /**
@@ -1482,7 +1478,7 @@ exports.generateECPolynomial = function generateECPolynomial (degree) {
   return poly
 }
 
-},{"./galois-field":15}],21:[function(require,module,exports){
+},{"./galois-field":14}],20:[function(require,module,exports){
 const Utils = require('./utils')
 const ECLevel = require('./error-correction-level')
 const BitBuffer = require('./bit-buffer')
@@ -1979,7 +1975,7 @@ exports.create = function create (data, options) {
   return createSymbol(data, version, errorCorrectionLevel, mask)
 }
 
-},{"./alignment-pattern":6,"./bit-buffer":8,"./bit-matrix":9,"./error-correction-code":11,"./error-correction-level":12,"./finder-pattern":13,"./format-info":14,"./mask-pattern":17,"./mode":18,"./reed-solomon-encoder":22,"./segments":24,"./utils":25,"./version":27}],22:[function(require,module,exports){
+},{"./alignment-pattern":5,"./bit-buffer":7,"./bit-matrix":8,"./error-correction-code":10,"./error-correction-level":11,"./finder-pattern":12,"./format-info":13,"./mask-pattern":16,"./mode":17,"./reed-solomon-encoder":21,"./segments":23,"./utils":24,"./version":26}],21:[function(require,module,exports){
 const Polynomial = require('./polynomial')
 
 function ReedSolomonEncoder (degree) {
@@ -2037,7 +2033,7 @@ ReedSolomonEncoder.prototype.encode = function encode (data) {
 
 module.exports = ReedSolomonEncoder
 
-},{"./polynomial":20}],23:[function(require,module,exports){
+},{"./polynomial":19}],22:[function(require,module,exports){
 const numeric = '[0-9]+'
 const alphanumeric = '[A-Z $%*+\\-./:]+'
 let kanji = '(?:[u3000-u303F]|[u3040-u309F]|[u30A0-u30FF]|' +
@@ -2070,7 +2066,7 @@ exports.testAlphanumeric = function testAlphanumeric (str) {
   return TEST_ALPHANUMERIC.test(str)
 }
 
-},{}],24:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 const Mode = require('./mode')
 const NumericData = require('./numeric-data')
 const AlphanumericData = require('./alphanumeric-data')
@@ -2402,7 +2398,7 @@ exports.rawSplit = function rawSplit (data) {
   )
 }
 
-},{"./alphanumeric-data":7,"./byte-data":10,"./kanji-data":16,"./mode":18,"./numeric-data":19,"./regex":23,"./utils":25,"dijkstrajs":1}],25:[function(require,module,exports){
+},{"./alphanumeric-data":6,"./byte-data":9,"./kanji-data":15,"./mode":17,"./numeric-data":18,"./regex":22,"./utils":24,"dijkstrajs":1}],24:[function(require,module,exports){
 let toSJISFunction
 const CODEWORDS_COUNT = [
   0, // Not used
@@ -2467,7 +2463,7 @@ exports.toSJIS = function toSJIS (kanji) {
   return toSJISFunction(kanji)
 }
 
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /**
  * Check if QR Code version is valid
  *
@@ -2478,7 +2474,7 @@ exports.isValid = function isValid (version) {
   return !isNaN(version) && version >= 1 && version <= 40
 }
 
-},{}],27:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 const Utils = require('./utils')
 const ECCode = require('./error-correction-code')
 const ECLevel = require('./error-correction-level')
@@ -2643,7 +2639,7 @@ exports.getEncodedBits = function getEncodedBits (version) {
   return (version << 12) | d
 }
 
-},{"./error-correction-code":11,"./error-correction-level":12,"./mode":18,"./utils":25,"./version-check":26}],28:[function(require,module,exports){
+},{"./error-correction-code":10,"./error-correction-level":11,"./mode":17,"./utils":24,"./version-check":25}],27:[function(require,module,exports){
 const Utils = require('./utils')
 
 function clearCanvas (ctx, canvas, size) {
@@ -2708,7 +2704,7 @@ exports.renderToDataURL = function renderToDataURL (qrData, canvas, options) {
   return canvasEl.toDataURL(type, rendererOpts.quality)
 }
 
-},{"./utils":30}],29:[function(require,module,exports){
+},{"./utils":29}],28:[function(require,module,exports){
 const Utils = require('./utils')
 
 function getColorAttrib (color, attrib) {
@@ -2791,7 +2787,7 @@ exports.render = function render (qrData, options, cb) {
   return svgTag
 }
 
-},{"./utils":30}],30:[function(require,module,exports){
+},{"./utils":29}],29:[function(require,module,exports){
 function hex2rgba (hex) {
   if (typeof hex === 'number') {
     hex = hex.toString()
@@ -2892,42 +2888,83 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
   }
 }
 
-},{}],31:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /* eslint-disable no-undef */
 const QRCode = require('qrcode')
-const jwtDecode = require('jwt-decode')
 const canvas = document.getElementById('canvas')
+const canvasQr = document.getElementById('canvas-qr')
 
 const qrText = document.getElementById('qr-text')
+const qrFrame = document.getElementById('qr-frame')
 const generateBtn = document.getElementById('generate')
-const qrType = document.getElementById('qr-type')
 const qrMessage = document.getElementById('qr-message')
 const qrSave = document.getElementById('qr-save')
 
-const qrCheck = (text, qrType) => {
+const ctx = canvas.getContext("2d");
+const width = 132
+const height = 132
+
+let frameArgs = []
+
+const qrCheck = (text) => {
   qrMessage.textContent = ''
   qrMessage.removeAttribute('class')
   try {
     if (String(qrText.value).trim() == '') throw new Error('error no value')
-    switch (qrType) {
-      case 'text':
-        QRCode.toCanvas(canvas, text)
-        qrMessage.classList.add('success')
-        qrMessage.textContent = 'text success!'
-        break;
-      case 'jwt':
-        QRCode.toCanvas(canvas, JSON.stringify(jwtDecode(text)))
-        qrMessage.classList.add('success')
-        qrMessage.textContent = 'jwt success!'
-        break;
-    }
-  } catch (error) {
+
+    QRCode.toCanvas(canvasQr, text, { margin: 1 })
+    frame(...frameArgs)
+    qrMessage.classList.add('success')
+    qrMessage.textContent = 'text success!'
+  }
+  catch (error) {
     qrMessage.classList.add('error')
     qrMessage.textContent = error.message
   }
 }
+
+qrFrame.addEventListener('change', (e) => {
+  switch (e.target.value) {
+    case 'no-frame':
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frameArgs = ['no-frame', '']
+      frame(...frameArgs)
+      break;
+    case 'menu-frame':
+      frameArgs = ['', 'M E N U', 30]
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frame(...frameArgs)
+      break;
+    case 'scanme-frame':
+      frameArgs = ['', 'SCAN ME', 22]
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frame(...frameArgs)
+      break;
+    case 'getapp-frame':
+      frameArgs = ['', 'GET APP', 25]
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frame(frameArgs)
+      break;
+    case 'viewpdf-frame':
+      frameArgs = ['', 'VIEW PDF', 21]
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frame(...frameArgs)
+      break;
+    case 'mycontact-frame':
+      frameArgs = ['', 'MY CONTACT', 16, 125, '16px']
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frame(...frameArgs)
+      break;
+    case 'socialmedia-frame':
+      frameArgs = ['', 'SOCIAL MEDIA', 10, 125, '16px']
+      QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+      frame(...frameArgs)
+      break;
+  }
+})
+
 generateBtn.addEventListener('click', () => {
-  qrCheck(qrText.value, qrType.value)
+  qrCheck(qrText.value)
 })
 
 qrSave.addEventListener('click', () => {
@@ -2936,6 +2973,33 @@ qrSave.addEventListener('click', () => {
 })
 
 qrText.value = 'max 1000 characters'
-QRCode.toCanvas(canvas, qrText.value)
+QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
+frame('no-frame')
 
-},{"jwt-decode":3,"qrcode":4}]},{},[31]);
+function frame(frame = '', title = '', x = 0, y = 128, fontSize = '20px') {
+  // clear all canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  if (frame != 'no-frame') {
+    // draw rect
+    ctx.fillStyle = "#000";
+    ctx.beginPath();
+    ctx.lineWidth = 10;
+    ctx.roundRect(0, 0, width + 5, height, [10, 10]);
+    ctx.fill();
+
+  }
+
+  // merge canvas qr
+  ctx.beginPath();
+  ctx.drawImage(canvasQr, 5, 5, width - 5, height - 30);
+
+  if (frame != 'no-frame')
+    // set text
+    ctx.fillStyle = "#fff";
+  ctx.beginPath();
+  ctx.font = `${fontSize} arial`;
+  ctx.fillText(`${title}`, x, y);
+}
+
+
+},{"qrcode":3}]},{},[30]);

@@ -10,7 +10,6 @@
   "author": "Marcello Pagano",
   "license": "MIT",
   "dependencies": {
-    "jwt-decode": "^3.1.2",
     "qrcode": "^1.5.1"
   },
   "devDependencies": {

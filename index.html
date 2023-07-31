@@ -13,13 +13,20 @@
     <h1>qrcodeJs</h1>
     <h6>qrcode generator</h6>
     <div class="container">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas-qr" hidden></canvas>
+        <canvas id="canvas" width="142" height="142" style="width: 142px; height: 142px;"></canvas>
         <form action="">
-            <select name="qr-type" id="qr-type">
-                <option value="text" selected>text</option>
-                <option value="jwt">jwt</option>
+    
+            <select name="qr-frame" id="qr-frame">
+                <option value="no-frame" selected>no frame</option>
+                <option value="menu-frame">menu frame</option>
+                <option value="scanme-frame">scan-me frame</option>
+                <option value="getapp-frame">get-app frame</option>
+                <option value="viewpdf-frame">view-pdf frame</option>
+                <option value="mycontact-frame">my-contact frame</option>
+                <option value="socialmedia-frame">social-media frame</option>
             </select>
-            <textarea name="qr-text" id="qr-text" rows="5" maxlength="1000"></textarea>
+            <textarea name="qr-text" id="qr-text" rows="3" maxlength="1000"></textarea>
             <div id="qr-message"></div>
             <div class="buttons">
                 <input type="button" value="generate" id="generate">
