@@ -6,6 +6,7 @@ const canvasQr = document.getElementById('canvas-qr')
 const qrText = document.getElementById('qr-text')
 const qrFrame = document.getElementById('qr-frame')
 const generateBtn = document.getElementById('generate')
+const clearBtn = document.getElementById('clear')
 const qrMessage = document.getElementById('qr-message')
 const qrSave = document.getElementById('qr-save')
 
@@ -18,18 +19,17 @@ let frameArgs = []
 const qrCheck = (text) => {
   qrMessage.textContent = ''
   qrMessage.removeAttribute('class')
-  try {
-    if (String(qrText.value).trim() == '') throw new Error('error no value')
 
-    QRCode.toCanvas(canvasQr, text, { margin: 1 })
-    frame(...frameArgs)
-    qrMessage.classList.add('success')
-    qrMessage.textContent = 'text success!'
-  }
-  catch (error) {
+  if (String(qrText.value).trim() == '') {
     qrMessage.classList.add('error')
-    qrMessage.textContent = error.message
+    qrMessage.textContent = 'qr error, no text!'
+    return
   }
+
+  QRCode.toCanvas(canvasQr, text, { margin: 1 })
+  frame(...frameArgs)
+  qrMessage.classList.add('success')
+  qrMessage.textContent = 'qr done!'
 }
 
 qrFrame.addEventListener('change', (e) => {
@@ -52,7 +52,7 @@ qrFrame.addEventListener('change', (e) => {
     case 'getapp-frame':
       frameArgs = ['', 'GET APP', 25]
       QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
-      frame(frameArgs)
+      frame(...frameArgs)
       break;
     case 'viewpdf-frame':
       frameArgs = ['', 'VIEW PDF', 21]
@@ -73,7 +73,12 @@ qrFrame.addEventListener('change', (e) => {
 })
 
 generateBtn.addEventListener('click', () => {
+  if (frameArgs.length == 0) frameArgs = ['no-frame']
   qrCheck(qrText.value)
+})
+
+clearBtn.addEventListener('click', () => {
+  qrMessage.textContent = ''
 })
 
 qrSave.addEventListener('click', () => {
@@ -81,7 +86,7 @@ qrSave.addEventListener('click', () => {
   qrSave.setAttribute('href', canvas.toDataURL("image/png"));
 })
 
-qrText.value = 'max 1000 characters'
+qrText.value = 'enter text/url'
 QRCode.toCanvas(canvasQr, qrText.value, { margin: 1 })
 frame('no-frame')
 
@@ -95,9 +100,7 @@ function frame(frame = '', title = '', x = 0, y = 128, fontSize = '20px') {
     ctx.lineWidth = 10;
     ctx.roundRect(0, 0, width + 5, height, [10, 10]);
     ctx.fill();
-
   }
-
   // merge canvas qr
   ctx.beginPath();
   ctx.drawImage(canvasQr, 5, 5, width - 5, height - 30);

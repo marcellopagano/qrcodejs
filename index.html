@@ -17,7 +17,7 @@
         <canvas id="canvas" width="142" height="142" style="width: 142px; height: 142px;"></canvas>
         <form action="">
     
-            <select name="qr-frame" id="qr-frame">
+            <select name="qr-frame" id="qr-frame" class="text">
                 <option value="no-frame" selected>no frame</option>
                 <option value="menu-frame">menu frame</option>
                 <option value="scanme-frame">scan-me frame</option>
@@ -26,16 +26,16 @@
                 <option value="mycontact-frame">my-contact frame</option>
                 <option value="socialmedia-frame">social-media frame</option>
             </select>
-            <textarea name="qr-text" id="qr-text" rows="3" maxlength="1000"></textarea>
+            <textarea name="qr-text" id="qr-text" rows="3" maxlength="1000" class="text" placeholder="enter text/url"></textarea>
             <div id="qr-message"></div>
             <div class="buttons">
-                <input type="button" value="generate" id="generate">
-                <input type="reset" value="reset" id="reset">
+                <input type="button" value="generate" id="generate" class="text">
+                <input type="reset" value="clear" id="clear" class="text">
             </div>
             <div class="save-button">
                 <a id="qr-save">
-                    <button type="button">
-                        Save QR
+                    <button type="button" class="text">
+                        Save PNG QR
                         </button>    
                 </a>
                 
